@@ -1,26 +1,70 @@
-<div class="container">
-  <h1>My Todo's</h1>
+<div class="content">
 
-<form role="form" ng-submit="addTodo()">
-  <div class="row">
-    <div class="input-group">
-    <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control">
-      <span class="input-group-btn">
-        <input type="submit" class="btn btn-primary" value="Add">
-      </span>
-    </div>
-  </div>
-  </form>
-  <p> </p>
+      <div id="slider" class="carousel slide" data-ride="carousel" style="height: (330)px">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#slider" data-slide-to="1" class="active"></li>
+              <li data-target="#slider" data-slide-to="0"></li>
+            </ol>
+     
+            <!-- Wrapper for slides -->
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+                <div class="item" ng-repeat="slide in slides" ng-class="{'active': slide.active}">
+                   <div class="container text-right">
+                          <div class="col-sm-6 item-description">
+                              <h1 class="title">{{slide.title}}</h1>
+                              <p class="text">
+                                  {{slide.text|limitTo:300}}
+                                  <span ng-if="slide.text.length > 300">...</span>
+                              </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <img style="margin:auto; max-height: 330px" class="img-responsive" ng-src="{{slide.image}}">
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#slider" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#slider" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+      </div> <!-- Carousel -->
 
-      <div ui-sortable ng-model="todos">
-         <p class="input-group" ng-repeat="todo in todos"style="padding:5px 10px; cursor: move;">
-          <input type="text" ng-model="todo" class="form-control">
-          <span class="input-group-btn">
-            <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
-          </span>
-        </p>
 
+
+
+
+      <div class="container">
+        <h1>My Todo's</h1>
+
+      <form role="form" ng-submit="addTodo()">
+        <div class="row">
+          <div class="input-group">
+          <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control">
+            <span class="input-group-btn">
+              <input type="submit" class="btn btn-primary" value="Add">
+            </span>
+          </div>
+        </div>
+        </form>
+        <p> </p>
+
+            <div ui-sortable ng-model="todos">
+               <p class="input-group" ng-repeat="todo in todos" style="padding:5px 10px; cursor: move;">
+                <input type="text" ng-model="todo" class="form-control">
+                <span class="input-group-btn">
+                  <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+                </span>
+              </p>
+
+            </div>
+       
       </div>
- 
+
+
 </div>
